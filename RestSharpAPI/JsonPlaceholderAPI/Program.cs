@@ -47,7 +47,14 @@ static void DeleteUser(RestClient client)
 {
     var deleteUserRequest = new RestRequest("posts/1", Method.Delete);
     var deleteUserResponse = client.Execute(deleteUserRequest);
-    Console.WriteLine("DELETE Response: \n" + deleteUserResponse.Content);
+    if (deleteUserResponse.StatusCode == System.Net.HttpStatusCode.OK)
+    {
+        Console.WriteLine("DELETE Response: \n" + deleteUserResponse.Content);
+    }
+    else
+    {
+        Console.WriteLine($"Error: {deleteUserResponse.ErrorMessage}");
+    }
 }
 
 //GET Single User
@@ -67,7 +74,7 @@ static void GetSingleUser(RestClient client)
         string? body = userJson["body"].ToString();
 
         Console.WriteLine("\nGET Single User Response:");
-        Console.WriteLine($"userId:{userId}\n id:{id}\n title:{title}\n body:{body} ");
+        Console.WriteLine($"userId:{userId}\nid:{id}\ntitle:{title}\nbody:{body} ");
     }
     else
     {
