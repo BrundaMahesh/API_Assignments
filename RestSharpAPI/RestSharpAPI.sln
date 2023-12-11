@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPlaceholderAPI", "JsonPlaceholderAPI\JsonPlaceholderAPI.csproj", "{9A13E159-8A94-44BE-8CBE-BCB8AB40E518}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPlaceholderAPI", "JsonPlaceholderAPI\JsonPlaceholderAPI.csproj", "{42C981D8-B52E-44CC-BB1D-FE977FF31850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9A13E159-8A94-44BE-8CBE-BCB8AB40E518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A13E159-8A94-44BE-8CBE-BCB8AB40E518}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A13E159-8A94-44BE-8CBE-BCB8AB40E518}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A13E159-8A94-44BE-8CBE-BCB8AB40E518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C981D8-B52E-44CC-BB1D-FE977FF31850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C981D8-B52E-44CC-BB1D-FE977FF31850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C981D8-B52E-44CC-BB1D-FE977FF31850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C981D8-B52E-44CC-BB1D-FE977FF31850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
