@@ -15,7 +15,7 @@ GetSingleUser(client);
 static void GetAllUsers(RestClient client)
 {
     var getUserRequest = new RestRequest("posts", Method.Get);
-   
+
     var getUserResponse = client.Execute(getUserRequest);
     Console.WriteLine("GET Response: \n" + getUserResponse.Content);
 }
@@ -66,7 +66,7 @@ static void GetSingleUser(RestClient client)
         string? title = userJson["title"].ToString();
         string? body = userJson["body"].ToString();
 
-        Console.WriteLine("GET Single User Response:");
+        Console.WriteLine("\nGET Single User Response:");
         Console.WriteLine($"userId:{userId}\n id:{id}\n title:{title}\n body:{body} ");
     }
     else
