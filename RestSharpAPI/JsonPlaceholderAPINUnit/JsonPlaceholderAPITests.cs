@@ -79,5 +79,19 @@ namespace JsonPlaceholderAPINUnit
 
             Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
         }
+
+        [Test]
+        [Order(4)]
+        public void GetAllUsers()
+        {
+            var request = new RestRequest("posts", Method.Get);
+            var response = client.Execute(request);
+
+            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+
+            List<UserData> users = JsonConvert.DeserializeObject<List<UserData>>(response.Content);
+
+            Assert.NotNull(users);
+        }
     }
 }
