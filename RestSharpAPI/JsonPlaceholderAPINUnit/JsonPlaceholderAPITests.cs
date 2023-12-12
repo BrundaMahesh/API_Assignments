@@ -98,10 +98,10 @@ namespace JsonPlaceholderAPINUnit
         [Order(5)]
         public void GetNonExistingUser()
         {
-            var request = new RestRequest("posts/77", Method.Get);
+            var request = new RestRequest("posts/987", Method.Get);
             var response = client.Execute(request);
 
-            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.NotFound));
         }
     }
 }
