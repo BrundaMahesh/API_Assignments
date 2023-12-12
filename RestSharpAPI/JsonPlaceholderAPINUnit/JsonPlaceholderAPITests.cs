@@ -22,7 +22,7 @@ namespace JsonPlaceholderAPINUnit
 
         [Test]
         [Order(0)]
-        public void GetSingleUser()
+        public void GetSingleUserTest()
         {
             var request = new RestRequest("posts/1", Method.Get);
             var response = client.Execute(request);
@@ -40,7 +40,7 @@ namespace JsonPlaceholderAPINUnit
 
         [Test]
         [Order(1)]
-        public void CreateUser()
+        public void CreateUserTest()
         {
             var request = new RestRequest("posts", Method.Post);
             request.AddHeader("Content-Type", "application/json");
@@ -56,7 +56,7 @@ namespace JsonPlaceholderAPINUnit
 
         [Test]
         [Order(2)]
-        public void UpdateUser()
+        public void UpdateUserTest()
         {
             var request = new RestRequest("posts/1", Method.Put);
             request.AddHeader("Content-Type", "application/json");
@@ -72,7 +72,7 @@ namespace JsonPlaceholderAPINUnit
 
         [Test]
         [Order(3)]
-        public void DeleteUser()
+        public void DeleteUserTest()
         {
             var request = new RestRequest("posts/1", Method.Delete);
             var response = client.Execute(request);
