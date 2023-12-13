@@ -176,7 +176,7 @@ namespace JsonPlaceholderModularizedCode
         public void GetNonExistingUser(int userId)
         {
             test = extent.CreateTest("Get Non-Existing User");
-            Log.Information("Get Non-Exixting User Test Started");
+            Log.Information("Get Non-Existing User Test Started");
 
             var request = new RestRequest("posts/" +userId, Method.Get);
             var response = client.Execute(request);
