@@ -166,7 +166,7 @@ namespace JsonPlaceholderModularizedCode
             }
             catch (AssertionException)
             {
-                test.Fail("Get Non-Existing User test failed");
+                test.Fail("Get All User test failed");
             }
         }
 
