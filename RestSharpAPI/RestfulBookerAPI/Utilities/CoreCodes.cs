@@ -39,7 +39,7 @@ namespace RestfulBookerAPI.Utilities
         [SetUp]
         public void Setup()
         {
-            client = new RestClient("https://restful-booker.herokuapp.com/booking");
+            client = new RestClient("https://restful-booker.herokuapp.com/");
         }
         [OneTimeTearDown]
         public void TearDown()
