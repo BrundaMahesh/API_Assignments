@@ -6,6 +6,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -163,6 +164,35 @@ namespace RestfulBookerAPI
                 test.Fail("Delete Booking test failed");
             }
         }
+
+        [Test]
+        [Order(5)]
+        public void CreateAuthTokenTest()
+        {
+            test = extent.CreateTest("Auth User Test");
+            var request = new RestRequest("/auth", Method.Post);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { username = "admin", password = "password123" });
+
+            var response = client.Execute(request);
+            try
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Log.Information($"Api Error:{response.Content}");
+                var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
+
+                Assert.NotNull(user);
+                Log.Information("Get UserData Test Passed");
+                Console.WriteLine(user.Token);
+                Assert.IsNotEmpty(user.Token);
+                Log.Information("User Token matches with fetch");
+
+                test.Pass("Create Auth Token Test Passed");
+            }
+            catch (AssertionException)
+            {
+                test.Fail("Create Auth Token Test Fail");
+            }
+        }
     }
 }
-////
