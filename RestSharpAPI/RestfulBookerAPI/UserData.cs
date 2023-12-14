@@ -16,10 +16,20 @@ namespace JsonPlaceholderModularizedCode
         public string? LastName { get; set; }
 
         [JsonProperty("totalprice")]
-        public int TotalPrice { get; set; }
+        public string? TotalPrice { get; set; }
 
         [JsonProperty("depositpaid")]
         public string? Depositpaid { get; set; }
+
+        [JsonProperty("checkin")]
+        public string? CheckIn { get; set; }
+
+        [JsonProperty("checkout")]
+        public string? CheckOut { get; set; }
+
+
+        [JsonProperty("additionalneeds")]
+        public string? AdditionalNeeds { get; set; }
 
     }
 }
