@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestfulBookerAPI
+namespace RestfulBookerAPI.Utilities
 {
     internal class Cookies
     {

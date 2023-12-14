@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JsonPlaceholderModularizedCode
+namespace RestfulBookerAPI.Utilities
 {
     internal class UserData
     {

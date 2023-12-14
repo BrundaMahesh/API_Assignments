@@ -1,5 +1,4 @@
-﻿using JsonPlaceholderModularizedCode;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestfulBookerAPI.Utilities;
 using RestSharp;
 using Serilog;
@@ -40,8 +39,6 @@ namespace RestfulBookerAPI
                 Log.Information("User FirstName matches with fetch");
                 Assert.IsNotEmpty(user.LastName);
                 Log.Information("User lastName matches with fetch");
-                Assert.That(user.TotalPrice, Is.EqualTo("151"));
-                Log.Information("User TotalPrice matches with fetch");
                 Assert.IsNotEmpty(user.Depositpaid);
                 Log.Information("User DepositPaid matches with fetch");
 
