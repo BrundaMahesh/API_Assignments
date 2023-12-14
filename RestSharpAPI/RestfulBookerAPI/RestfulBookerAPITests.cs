@@ -138,5 +138,31 @@ namespace RestfulBookerAPI
                 test.Fail("Create Booking test failed");
             }
         }
+
+        [Test]
+        [Order(4)]
+        [TestCase(1)]
+        public void DeleteBookingTest(int userId)
+        {
+            test = extent.CreateTest("Delete Booking");
+            Log.Information("DeleteBookingTest Started");
+
+            var request = new RestRequest("/" + userId, Method.Delete);
+            var response = client.Execute(request);
+
+            try
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Forbidden));
+                Log.Information("User deleted");
+                Log.Information("Delete Booking test passed");
+
+                test.Pass("Delete Booking test passed");
+            }
+            catch (AssertionException)
+            {
+                test.Fail("Delete Booking test failed");
+            }
+        }
     }
 }
+////
