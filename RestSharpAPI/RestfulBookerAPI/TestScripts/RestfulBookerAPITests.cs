@@ -186,7 +186,7 @@ namespace RestfulBookerAPI.TestScripts
         }
         [Test]
         [Order(5)]
-        [TestCase(8)]
+        [TestCase(10)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
