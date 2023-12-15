@@ -111,23 +111,29 @@ namespace RestfulBookerAPI.TestScripts
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"API Response: {response.Content}");
 
-                var user = JsonConvert.DeserializeObject<UserData>(response.Content);
+                var user = JsonConvert.DeserializeObject<CreateBooking>(response.Content);
                 Assert.NotNull(user);
                 Log.Information("User created and returned");
-                Assert.IsNotEmpty(user.FirstName);
-                Log.Information("User First Name matches with fetch");
-                Assert.IsNotEmpty(user.LastName);
-                Log.Information("User Last Name matches with fetch");
-                Assert.IsNotEmpty(user.TotalPrice);
-                Log.Information("User Total Price matches with fetch");
-                Assert.IsNotEmpty(user.Depositpaid);
-                Log.Information("User Depositpaid matches with fetch");
-                Assert.IsNotEmpty(user.CheckIn);
-                Log.Information("User CheckIn matches with fetch");
-                Assert.IsNotEmpty(user.CheckOut);
-                Log.Information("User CheckOut matches with fetch");
-                Assert.IsNotEmpty(user.AdditionalNeeds);
-                Log.Information("User AdditionalNeeds matches with fetch");
+
+                UserData createbooking = user.Booking;
+                Assert.That(createbooking.FirstName, Is.EqualTo("John"));
+                Log.Information($"User First Name matches with fetch {createbooking.FirstName}");
+                Assert.That(createbooking.LastName, Is.EqualTo("Doe"));
+                Log.Information($"User Last Name matches with fetch {createbooking.LastName}");
+                Assert.That(createbooking.TotalPrice, Is.EqualTo("200"));
+                Log.Information($"User Total Price matches with fetch {createbooking.TotalPrice}");
+                Assert.That(createbooking.Depositpaid, Is.EqualTo("true"));
+                Log.Information($"User Depositpaid matches with fetch {createbooking.Depositpaid}");
+                
+                BookingDates bookingDates = createbooking.BookingDates;
+                Assert.That(bookingDates.CheckIn, Is.EqualTo("2023-03-01"));
+                Log.Information($"User CheckIn matches with fetch {bookingDates.CheckIn}");
+                Assert.That(bookingDates.CheckOut, Is.EqualTo("2023-03-15"));
+                Log.Information($"User CheckOut matches with fetch {bookingDates.CheckOut}");
+
+
+                Assert.That(createbooking.AdditionalNeeds, Is.EqualTo("Extra pillows"));
+                Log.Information($"User AdditionalNeeds matches with fetch {createbooking.AdditionalNeeds}");
 
                 Log.Information("Create Booking test passed all Asserts");
 
@@ -186,7 +192,7 @@ namespace RestfulBookerAPI.TestScripts
         }
         [Test]
         [Order(5)]
-        [TestCase(10)]
+        [TestCase(11)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
