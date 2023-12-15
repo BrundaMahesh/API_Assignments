@@ -9,10 +9,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestfulBookerAPI
+namespace RestfulBookerAPI.TestScripts
 {
     [TestFixture]
-    internal class RestfulBookerAPITests:CoreCodes
+    internal class RestfulBookerAPITests : CoreCodes
     {
         [Test]
         [Order(1)]
@@ -22,13 +22,13 @@ namespace RestfulBookerAPI
             test = extent.CreateTest("Get Single Booking Id");
             Log.Information("GetSingleBookingId Test Started");
 
-            var request = new RestRequest("booking/"+ userId, Method.Get);
+            var request = new RestRequest("booking/" + userId, Method.Get);
             request.AddHeader("Accept", "application/json");
             var response = client.Execute(request);
 
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"API Response: {response.Content}");
 
                 var user = JsonConvert.DeserializeObject<UserData>(response.Content);
@@ -41,7 +41,6 @@ namespace RestfulBookerAPI
                 Log.Information("User lastName matches with fetch");
                 Assert.IsNotEmpty(user.Depositpaid);
                 Log.Information("User DepositPaid matches with fetch");
-
 
                 test.Pass("GetSingleBookingIdTest passed all Asserts.");
             }
@@ -63,7 +62,7 @@ namespace RestfulBookerAPI
 
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"API Response: {response.Content}");
 
                 List<UserData> users = JsonConvert.DeserializeObject<List<UserData>>(response.Content);
@@ -89,7 +88,8 @@ namespace RestfulBookerAPI
             var request = new RestRequest("booking", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
-            request.AddJsonBody(new {
+            request.AddJsonBody(new
+            {
                 firstname = "John",
                 lastname = "Doe",
                 totalprice = "200",
@@ -106,7 +106,7 @@ namespace RestfulBookerAPI
 
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"API Response: {response.Content}");
 
                 var user = JsonConvert.DeserializeObject<UserData>(response.Content);
@@ -144,21 +144,21 @@ namespace RestfulBookerAPI
         {
             test = extent.CreateTest("Update Booking ");
             Log.Information("UpdateBookingTest Started");
-            
+
             var request = new RestRequest("auth", Method.Post);
             request.AddHeader("Content-Type", "Application/Json");
             request.AddJsonBody(new { username = "admin", password = "password123" });
             var response = client.Execute(request);
-            
+
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"Api Error:{response.Content}");
                 var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
                 Assert.NotNull(user);
                 Log.Information("Update User test passed");
 
-                var reqput = new RestRequest("booking/" +userId, Method.Put);
+                var reqput = new RestRequest("booking/" + userId, Method.Put);
                 reqput.AddHeader("Content-Type", "Application/Json");
                 reqput.AddHeader("Cookie", "token=" + user.Token);
                 reqput.AddJsonBody(new
@@ -184,7 +184,7 @@ namespace RestfulBookerAPI
         }
         [Test]
         [Order(5)]
-        [TestCase(1)]
+        [TestCase(4)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
@@ -198,13 +198,13 @@ namespace RestfulBookerAPI
             try
             {
                 var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
-                var req = new RestRequest("booking/"+userId, Method.Delete);
+                var req = new RestRequest("booking/" + userId, Method.Delete);
                 req.AddHeader("Content-Type", "Application/Json");
                 req.AddHeader("Cookie", "token=" + user.Token);
 
                 var res = client.Execute(req);
 
-                Assert.That(res.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Created));
+                Assert.That(res.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                 Log.Information($"API Error: {res.Content}");
                 Log.Information("User deleted");
                 Log.Information("Delete Booking test passed");
@@ -229,7 +229,7 @@ namespace RestfulBookerAPI
             var response = client.Execute(request);
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"Api Error:{response.Content}");
                 var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
 
@@ -261,7 +261,7 @@ namespace RestfulBookerAPI
 
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Log.Information($"Api Error:{response.Content}");
                 var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
                 Assert.NotNull(user);
@@ -271,10 +271,12 @@ namespace RestfulBookerAPI
                 reqput.AddHeader("Content-Type", "Application/Json");
                 reqput.AddHeader("Cookie", "token=" + user.Token);
                 reqput.AddJsonBody(new
-                {  
+                {
                     totalprice = "500",
                     additionalneeds = "Extra pillows and Breakfast"
                 });
+
+                Log.Information("Partial Update Booking test passed");
 
                 test.Pass("Partial Update Booking Test Passed");
             }
@@ -296,7 +298,7 @@ namespace RestfulBookerAPI
 
             try
             {
-                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Created));
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                 Log.Information($"API Response: {response.Content}");
 
                 Log.Information("Get Health Check test passed");
