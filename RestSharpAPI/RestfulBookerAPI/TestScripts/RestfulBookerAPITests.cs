@@ -278,7 +278,6 @@ namespace RestfulBookerAPI.TestScripts
                     totalprice = "500",
                     additionalneeds = "Extra pillows and Breakfast"
                 });
-
                 Log.Information("Partial Update Booking test passed");
 
                 test.Pass("Partial Update Booking Test Passed");
