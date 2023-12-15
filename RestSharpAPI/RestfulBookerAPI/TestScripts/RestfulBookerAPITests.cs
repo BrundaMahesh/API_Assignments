@@ -207,6 +207,7 @@ namespace RestfulBookerAPI.TestScripts
                 Assert.That(res.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                 Log.Information($"API Error: {res.Content}");
                 Log.Information("User deleted");
+
                 Log.Information("Delete Booking test passed");
 
                 test.Pass("Delete Booking test passed");
