@@ -41,6 +41,8 @@ namespace RestfulBookerAPI.TestScripts
                 Log.Information("User lastName matches with fetch");
                 Assert.IsNotEmpty(user.Depositpaid);
                 Log.Information("User DepositPaid matches with fetch");
+                
+                Log.Information("Get Single Booking Id test passed");
 
                 test.Pass("GetSingleBookingIdTest passed all Asserts.");
             }
@@ -184,7 +186,7 @@ namespace RestfulBookerAPI.TestScripts
         }
         [Test]
         [Order(5)]
-        [TestCase(6)]
+        [TestCase(7)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
