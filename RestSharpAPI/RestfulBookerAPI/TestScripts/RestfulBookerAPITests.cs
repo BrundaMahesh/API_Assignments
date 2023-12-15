@@ -20,7 +20,7 @@ namespace RestfulBookerAPI.TestScripts
         public void GetSingleBookingIdTest(int userId)
         {
             test = extent.CreateTest("Get Single Booking Id");
-            Log.Information("GetSingleBookingId Test Started");
+            Log.Information("Get Single Booking Id Test Started");
 
             var request = new RestRequest("booking/" + userId, Method.Get);
             request.AddHeader("Accept", "application/json");
@@ -44,11 +44,11 @@ namespace RestfulBookerAPI.TestScripts
                 
                 Log.Information("Get Single Booking Id test passed");
 
-                test.Pass("GetSingleBookingIdTest passed all Asserts.");
+                test.Pass("Get Single Booking Id Test passed all Asserts.");
             }
             catch (AssertionException)
             {
-                test.Fail("GetSingleBookingId test failed");
+                test.Fail("Get Single Booking Id test failed");
             }
         }
 
@@ -85,7 +85,7 @@ namespace RestfulBookerAPI.TestScripts
         public void CreateBookingTest()
         {
             test = extent.CreateTest("Create Booking");
-            Log.Information("CreateBooking Test Started");
+            Log.Information("Create Booking Test Started");
 
             var request = new RestRequest("booking", Method.Post);
             request.AddHeader("Content-Type", "application/json");
@@ -129,9 +129,9 @@ namespace RestfulBookerAPI.TestScripts
                 Assert.IsNotEmpty(user.AdditionalNeeds);
                 Log.Information("User AdditionalNeeds matches with fetch");
 
-                Log.Information("CreateBooking test passed all Asserts");
+                Log.Information("Create Booking test passed all Asserts");
 
-                test.Pass("CreateBooking passed all Asserts.");
+                test.Pass("Create Booking passed all Asserts.");
             }
             catch (AssertionException)
             {
@@ -145,7 +145,7 @@ namespace RestfulBookerAPI.TestScripts
         public void UpdateBookingTest(int userId)
         {
             test = extent.CreateTest("Update Booking ");
-            Log.Information("UpdateBookingTest Started");
+            Log.Information("Update Booking Test Started");
 
             var request = new RestRequest("auth", Method.Post);
             request.AddHeader("Content-Type", "Application/Json");
@@ -186,11 +186,11 @@ namespace RestfulBookerAPI.TestScripts
         }
         [Test]
         [Order(5)]
-        [TestCase(7)]
+        [TestCase(8)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
-            Log.Information("DeleteBookingTest Started");
+            Log.Information("Delete Booking Test Started");
 
             var request = new RestRequest("auth", Method.Post);
             request.AddHeader("Content-Type", "Application/Json");
@@ -237,7 +237,7 @@ namespace RestfulBookerAPI.TestScripts
                 var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
 
                 Assert.NotNull(user);
-                Log.Information("Get UserData Test Passed");
+                Log.Information("User Token Test Passed");
                 Console.WriteLine(user.Token);
                 Assert.IsNotEmpty(user.Token);
                 Log.Information("User Token matches with fetch");
@@ -255,7 +255,7 @@ namespace RestfulBookerAPI.TestScripts
         public void PartialUpdateBookingTest(int userId)
         {
             test = extent.CreateTest("Partial Update Booking ");
-            Log.Information("PartialUpdateBookingTest Started");
+            Log.Information("Partial Update Booking Test Started");
 
             var request = new RestRequest("auth", Method.Post);
             request.AddHeader("Content-Type", "Application/Json");
