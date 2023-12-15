@@ -184,7 +184,7 @@ namespace RestfulBookerAPI.TestScripts
         }
         [Test]
         [Order(5)]
-        [TestCase(4)]
+        [TestCase(6)]
         public void DeleteBookingTest(int userId)
         {
             test = extent.CreateTest("Delete Booking");
@@ -221,7 +221,7 @@ namespace RestfulBookerAPI.TestScripts
         [Order(6)]
         public void CreateAuthTokenTest()
         {
-            test = extent.CreateTest("Auth User Test");
+            test = extent.CreateTest("Create Auth Token");
             var request = new RestRequest("/auth", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(new { username = "admin", password = "password123" });
