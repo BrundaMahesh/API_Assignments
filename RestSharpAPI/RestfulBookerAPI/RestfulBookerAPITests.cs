@@ -53,7 +53,7 @@ namespace RestfulBookerAPI
 
         [Test]
         [Order(2)]
-        public void GetAllBookingIds()
+        public void GetAllBookingIdsTest()
         {
             test = extent.CreateTest("Get All Booking Ids");
             Log.Information("Get All Booking Ids Test Started");
@@ -244,6 +244,68 @@ namespace RestfulBookerAPI
             catch (AssertionException)
             {
                 test.Fail("Create Auth Token Test Fail");
+            }
+        }
+        [Test]
+        [Order(7)]
+        [TestCase(3)]
+        public void PartialUpdateBookingTest(int userId)
+        {
+            test = extent.CreateTest("Partial Update Booking ");
+            Log.Information("PartialUpdateBookingTest Started");
+
+            var request = new RestRequest("auth", Method.Post);
+            request.AddHeader("Content-Type", "Application/Json");
+            request.AddJsonBody(new { username = "admin", password = "password123" });
+            var response = client.Execute(request);
+
+            try
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+                Log.Information($"Api Error:{response.Content}");
+                var user = JsonConvert.DeserializeObject<Cookies>(response.Content);
+                Assert.NotNull(user);
+                Log.Information("Partial Update Booking test passed");
+
+                var reqput = new RestRequest("booking/" + userId, Method.Put);
+                reqput.AddHeader("Content-Type", "Application/Json");
+                reqput.AddHeader("Cookie", "token=" + user.Token);
+                reqput.AddJsonBody(new
+                {  
+                    totalprice = "500",
+                    additionalneeds = "Extra pillows and Breakfast"
+                });
+
+                test.Pass("Partial Update Booking Test Passed");
+            }
+            catch (AssertionException)
+            {
+                test.Fail("Partial Update Booking test failed");
+            }
+        }
+
+        [Test]
+        [Order(8)]
+        public void GetHealthCheckTest()
+        {
+            test = extent.CreateTest("Get Health Check");
+            Log.Information("Get Health Check Test Started");
+
+            var request = new RestRequest("ping", Method.Get);
+            var response = client.Execute(request);
+
+            try
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Created));
+                Log.Information($"API Response: {response.Content}");
+
+                Log.Information("Get Health Check test passed");
+
+                test.Pass("Get Health Check test passed");
+            }
+            catch (AssertionException)
+            {
+                test.Fail("Get Health Check test failed");
             }
         }
     }
