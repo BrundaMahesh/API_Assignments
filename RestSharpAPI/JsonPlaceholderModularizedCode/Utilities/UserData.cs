@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JsonPlaceholderModularizedCode
+namespace JsonPlaceholderModularizedCode.Utilities
 {
     internal class UserData
     {
@@ -16,7 +16,7 @@ namespace JsonPlaceholderModularizedCode
         public int Id { get; set; }
 
         [JsonProperty("title")]
-        public string? Title  { get; set; }
+        public string? Title { get; set; }
 
         [JsonProperty("body")]
         public string? Body { get; set; }
