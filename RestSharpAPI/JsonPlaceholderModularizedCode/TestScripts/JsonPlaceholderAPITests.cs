@@ -162,7 +162,11 @@ namespace JsonPlaceholderModularizedCode.TestScripts
                 Assert.NotNull(user);
                 Log.Information("User created and returned");
                 Assert.That(user.UserId, Is.EqualTo(10));
-                Log.Information("User userId matches with fetch");
+                Log.Information($"User userId matches with fetch {user.UserId}");
+                Assert.That(user.Title, Is.EqualTo("RestSharp API"));
+                Log.Information($"User Title matches with fetch {user.Title}");
+                Assert.That(user.Body, Is.EqualTo("RestSharp"));
+                Log.Information($"User Body matches with fetch {user.Body}");
 
                 Log.Information("Create User test passed");
 
